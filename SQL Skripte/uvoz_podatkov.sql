@@ -17,3 +17,12 @@ IGNORE 1 LINES
 
 
 
+LOAD DATA INFILE '/var/lib/mysql-files/ean_seznam.csv'
+INTO TABLE seznam_ean_kod
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+(koda, status);
+
+
