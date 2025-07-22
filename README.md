@@ -1,6 +1,6 @@
 # Alpina-Test
 
-Alpina-Test je projekt napisan v PHP, ki uporablja MySQL podatkovno bazo za shranjevanje podatkov.
+Alpina-Test je dokončana naloga za študentsko delo programerja v Alpini
 
 ## Zahteve
 
@@ -12,7 +12,7 @@ Alpina-Test je projekt napisan v PHP, ki uporablja MySQL podatkovno bazo za shra
 
 ### 1. Namestitev PHP mysqli razširitve
 
-Če uporabljate Linux (npr. Ubuntu), za namestitev zaženite:
+V primeru uporabe sistema z Linux Distribucijo (npr. Ubuntu, Mint, Debian itd.)
 ```bash
 sudo apt-get install php-mysqli
 ```
@@ -25,26 +25,23 @@ sudo systemctl restart apache2
 
 #### a) Ustvarite podatkovno bazo in tabele
 
-V projektni mapi poiščite SQL skripte (npr. `database.sql`). Zaženite naslednji ukaz v MySQL terminalu:
-```sql
-SOURCE /pot/do/database.sql;
-```
+V projektni mapi poiščite SQL skripto `ustvari_tabele.sql`, ter ga zaženite z pomočjo različnih orodij (npr. Heidi ali pa kar v terminalu)
+- skripta bo ustvarila podatkovno bazo, ter tabele z stolpci za podatke
 
 #### b) Uvoz podatkov
 
-Če obstaja skripta za uvoz podatkov (npr. `import.sql`), jo zaženite podobno:
-```sql
-SOURCE /pot/do/import.sql;
-```
+Na vaš sistem naložite csv datoteke podatkov v mapi datoteke, ter jih shranite na dosegljivo mesto na vašem računalniku
+Pridobite poti do csv datotek, ter spremenite poti v `uvoz_podatkov.sql` v pravilne poti, ki ustrezajo vašem sistemu
+Zaženite skripto, ki bo v primeru da so csv datoteke na pravilnem mestu, ter da so bile tabele in podatkovna baza ustvarjena pravilno, uvozila potrebne podatke za testiranje php kode.
 
 ### 3. Prilagoditev MySQL nastavitev v PHP kodi
 
-Odprite PHP datoteko, kjer se vzpostavi povezava z bazo (pogosto `config.php` ali `db_connect.php`), in uredite naslednje spremenljivke:
+Odprite PHP datoteko, ki vsebuje vso kodo projekta, ter spremenite podatke za povezavo z podatkovno bazo
 ```php
-$host = 'localhost'; // ali naslov vašega MySQL strežnika
-$user = 'uporabniško_ime';
+$servername = 'localhost'; // ali naslov vašega MySQL strežnika
+$username = 'uporabniško_ime';
 $password = 'geslo';
-$database = 'ime_podatkovne_baze';
+$dbname = 'ime_podatkovne_baze';
 ```
 
 ### 4. Zagon PHP kode
@@ -56,9 +53,12 @@ $database = 'ime_podatkovne_baze';
    ```
    http://localhost/Alpina-Test/
    ```
-3. Sledite navodilom na spletni strani.
+3. kodo lahko zaženete tudi v terminalu z ukazom
+```bash
+php ime_datoteke.php
+```
 
-## Pogosta vprašanja
+## Pogoste Napake
 
 **Napaka: "Call to undefined function mysqli_connect()"**  
 Preverite, če je nameščena razširitev `mysqli` in da je omogočena v `php.ini`.
@@ -66,6 +66,3 @@ Preverite, če je nameščena razširitev `mysqli` in da je omogočena v `php.in
 **Napaka pri povezavi z bazo**  
 Preverite, če so podatki za povezavo (host, uporabnik, geslo, baza) pravilni in če ima uporabnik ustrezne pravice.
 
-## Kontakt
-
-Za vprašanja ali prijavo napak se obrnite na [vaš email ali GitHub profil].
