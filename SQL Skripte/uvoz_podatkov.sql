@@ -1,10 +1,18 @@
 
 -- NAVODILA ZA UPORABO:
 -- ustvari podatkovno bazo ter potrebne tabele (s pomočjo create_tables.sql)
--- zamenjaj poti do CSV datotek v skladu z lokacijami na svojem sistemu
+-- Prenesi csv datoteke iz mape "Podatki" v želeno mapo na tvojemračunalniku, ter zamenjaj poti do datotek na tebi ustrezne poti
 -- zaženi skript v testnem MySQL strežniku
-USE spletna_trgovina_test;
-SET GLOBAL local_infile = 1;
+
+
+USE spletna_trgovina_test; -- uporaba podatkovne baze, če še ni izbrana
+--SET GLOBAL local_infile = 1; -- omogoči uvoz podatkov iz datotek, odvisno od sistema ter nastavitev strežnika
+
+
+-- praznjenje tabel, za namene debugginga 
+TRUNCATE TABLE podatki_spletna_trgovina;
+TRUNCATE TABLE seznam_ean_kod;
+TRUNCATE TABLE podatki_crm;
 
 -- UVOZ PODATKOV -- 1. TABELA 
 
