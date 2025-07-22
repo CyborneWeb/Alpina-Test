@@ -6,43 +6,66 @@ USE spletna_trgovina_test;
 --- USTVARJANJE 1. TABELE : podatki_spletna_trgovina
 DROP TABLE IF EXISTS podatki_spletna_trgovina;
 CREATE TABLE podatki_spletna_trgovina (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    ime VARCHAR(100),
-    priimek VARCHAR(100),
-    email VARCHAR(150),
-    telefon VARCHAR(50),
-    naslov VARCHAR(255),
-    posta VARCHAR(20),
-    kraj VARCHAR(100),
-    spol ENUM('M', 'Z') DEFAULT NULL,
-    interest VARCHAR(100),
-    status TINYINT(1) DEFAULT 0
+    id INT PRIMARY KEY,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    street VARCHAR(100),
+    zipcode VARCHAR(10),
+    city VARCHAR(50),
+    email VARCHAR(100),
+    phone VARCHAR(20),
+    birthdate VARCHAR(20) DEFAULT NULL,
+    interest VARCHAR(50), 
+    gender CHAR(1),
+    sizes VARCHAR(50), 
+    status TINYINT(1) DEFAULT 0, 
+    mailing TINYINT(1) DEFAULT 0, 
+    sms TINYINT(1) DEFAULT 0, 
+    date VARCHAR(20) DEFAULT NULL 
 );
 
 -- USTVARJANJE 2. TABELE : seznam_ean_kod
 DROP TABLE IF EXISTS seznam_ean_kod;
 CREATE TABLE seznam_ean_kod (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    koda VARCHAR(20) UNIQUE,
-    status ENUM('vnesen', 'porabljen') DEFAULT 'vnesen'
+    ean VARCHAR(20) NOT NULL PRIMARY KEY,
+    status VARCHAR(15),
+    dzs VARCHAR(10) DEFAULT NULL
 );
 
 -- USTVARJANJE 3. TABELE : podatki_crm
 DROP TABLE IF EXISTS podatki_crm;
 CREATE TABLE podatki_crm (
-    ck_sif INT NOT NULL,
-    ck_podr VARCHAR(10) NOT NULL,
-    ck_uspr VARCHAR(100),           -- sistemski uporabnik
-    ck_dspr DATE,                   -- datum spremembe
-    ck_zaup13 VARCHAR(20),          -- EAN koda
-    ime VARCHAR(100),
-    priimek VARCHAR(100),
-    email VARCHAR(150),
-    telefon VARCHAR(50),
-    naslov VARCHAR(255),
-    posta VARCHAR(20),
-    kraj VARCHAR(100),
-    spol ENUM('M', 'Z') DEFAULT NULL,
-    interest VARCHAR(100),
-    PRIMARY KEY (ck_sif, ck_podr)
+    CK_SIF INT NOT NULL,
+    CK_PRII VARCHAR(50) NOT NULL,
+    CK_IME VARCHAR(50),
+    CK_ULIC VARCHAR(100),
+    CK_POST VARCHAR(10),
+    CK_KRAJ VARCHAR(50),
+    CK_PODR VARCHAR(10),
+    CK_TEL1 VARCHAR(20),
+    CK_TEL2 VARCHAR(20),
+    CK_TEL3 VARCHAR(20),
+    CK_EMAIL VARCHAR(100),
+    CK_EMAILIN VARCHAR(20),
+    CK_ROJD VARCHAR(20),
+    CK_LETNIK VARCHAR(10),
+    CK_SPOL VARCHAR(20),
+    CK_IZOB VARCHAR(20),
+    CK_REKL VARCHAR(20),
+    CK_DAV VARCHAR(20),
+    CK_POS VARCHAR(20),
+    CK_GESL VARCHAR(20),
+    CK_DSPR VARCHAR(20),
+    CK_USPR VARCHAR(100),
+    CK_OPOM VARCHAR(100),
+    CK_KOMEN VARCHAR(10),
+    CK_UPOR VARCHAR(100),
+    CK_INTRS VARCHAR(20),
+    CK_EANST VARCHAR(20),
+    CK_ZAUP13 VARCHAR(20),
+    CK_ZAUPAKT VARCHAR(20),
+    CK_IZPIS VARCHAR(20),
+    CK_IZPDAT VARCHAR(20),
+    CK_POD VARCHAR(20),
+    PRIMARY KEY (CK_SIF, CK_PRII)
 );
