@@ -40,7 +40,7 @@ $result = $conn->query($sql);
 
 while ($row = $result->fetch_assoc()) {
     // 3. Pridobi naslednjo prosto ck_sif
-    $ck_podr = 10; // Področje Slovenije, 
+    $ck_podr = 10; // Področje Slovenije,
     $nextSif = 1;
     $sifResult = $conn->query("SELECT MAX(ck_sif) as max_sif FROM podatki_crm WHERE ck_podr = $ck_podr");
     if ($sifRow = $sifResult->fetch_assoc()) {
@@ -125,13 +125,13 @@ while ($row = $result->fetch_assoc()) {
         'ck_rekl' => $ck_rekl,
         'ck_dspr' => $ck_dspr, // datum prenosa v tabelo
         'ck_uspr' => $ck_uspr, // uporabnik, ki je izvedel prenos
-        'ck_intrs' => $ck_intrs, // značilnosti
-        'ck_zaup13' => $ean, // izbrana ean koda
-        'ck_pod' => "SLO" // Področje Slovenije
+        'ck_intrs' => $ck_intrs,
+        'ck_zaup13' => $ean,
+        'ck_pod' => "SLO"
     ];
 
 
-    // pripraba imen stolpcev 
+    // pripraba imen stolpcev
     $stolpci = implode(', ', array_keys($PodatkiVnos));
 
 
@@ -153,10 +153,10 @@ while ($row = $result->fetch_assoc()) {
 
     // preverjanje če je vnos uspel, ter spreminjanje statusov v seznam_ean_kod in podatki_spletna_trgovina
 
-    if ($conn->query($insertSql) === TRUE) {
+    if ($conn->query($insertStavek) === TRUE) {
         echo "Uspešno vnešen zapis: " . $PodatkiVnos['ck_ime'] . " " . $PodatkiVnos['ck_prii'] . PHP_EOL;
 
-        // Update EAN and source table status
+        // Posodbitev statusov
         $conn->query("UPDATE seznam_ean_kod SET status = 'uporabljen' WHERE ean = '$ean'");
         $conn->query("UPDATE podatki_spletna_trgovina SET status = 1 WHERE id = {$row['id']}");
     } else {
